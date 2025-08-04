@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SA Digital Edge | Premier Digital Marketing in South Africa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff7e00;
+            --secondary: #003b5c;
+            --accent: #00a896;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-banner {
+            background: linear-gradient(rgba(0, 59, 92, 0.8), rgba(0, 168, 150, 0.8)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 150px 0 100px;
+            color: white;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 45px;
+            text-align: center;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .service-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 100%;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            background: var(--secondary);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -40px auto 20px;
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .testimonial-card {
+            border-left: 4px solid var(--primary);
+        }
+        
+        .stats-banner {
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            padding: 70px 0;
+            color: white;
+        }
+        
+        .pricing-card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e9ecef;
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+            position: relative;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .pricing-header {
+            background: var(--secondary);
+            color: white;
+            padding: 30px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: #e67300;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 126, 0, 0.4);
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 25px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline-primary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 70px 0 0;
+        }
+        
+        .footer-bottom {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+        }
+        
+        .map-container {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .payment-icon {
+            width: 50px;
+            height: 30px;
+            background: white;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-section {
+            background: var(--light);
+            padding: 50px 0;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            color: var(--primary);
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        
+        .banner {
+            background: linear-gradient(rgba(0, 59, 92, 0.9), rgba(0, 59, 92, 0.9)), url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            color: white;
+            text-align: center;
+        }
+        
+        .south-africa-highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <h2 class="fw-bold"><span class="text-primary">SA</span> Digital Edge</h2>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Clients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <div class="ms-lg-3 mt-3 mt-lg-0">
+                    <a href="#pricing" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Digital Growth for <span class="south-africa-highlight">South African</span> Businesses</h1>
+                    <p class="lead mb-5">We help South African brands thrive online with cutting-edge digital marketing strategies tailored for local markets.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#services" class="btn btn-primary btn-lg">Our Services</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg">Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Digital Marketing Team" class="img-fluid rounded shadow">
+                        <div class="position-absolute top-0 start-0 bg-primary text-white p-3 rounded shadow" style="transform: translate(-20%, -20%);">
+                            <h4 class="mb-0">+87%</h4>
+                            <p class="mb-0">Avg. ROI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title fw-bold">Our Digital Marketing Services</h2>
+                    <p class="lead">Comprehensive solutions designed for the South African market</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card bg-white">
+                        <div class="service-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <h4 class="card-title fw-bold">SEO Optimization</h4>
+                            <p class="card-text">Dominate South African search results with our locally-optimized SEO strategies that drive organic traffic.</p>
+                            <ul class="text-start mt-4">
+                                <li>Keyword research for ZA market</li>
+                                <li>Local SEO optimization</li>
+                                <li>Technical SEO audits</li>
+                                <li>Content strategy development</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card bg-white">
+                        <div class="service-icon">
+                            <i class="fas fa-ad"></i>
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <h4 class="card-title fw-bold">Social Media Marketing</h4>
+                            <p class="card-text">Engage with South African audiences on platforms they love with culturally relevant campaigns.</p>
+                            <ul class="text-start mt-4">
+                                <li>Platform-specific strategies</li>
+                                <li>Content creation & scheduling</li>
+                                <li>Community management</li>
+                                <li>Influencer partnerships</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card bg-white">
+                        <div class="service-icon">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <h4 class="card-title fw-bold">Email Marketing</h4>
+                            <p class="card-text">Build relationships with South African customers through personalized email campaigns that convert.</p>
+                            <ul class="text-start mt-4">
+                                <li>List segmentation</li>
+                                <li>Automated workflows</li>
+                                <li>Responsive templates</li>
+                                <li>Performance analytics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card bg-white">
+                        <div class="service-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <h4 class="card-title fw-bold">E-commerce Solutions</h4>
+                            <p class="card-text">Optimize your online store for the South African market with conversion-focused strategies.</p>
+                            <ul class="text-start mt-4">
+                                <li>Shopify & WooCommerce expertise</li>
+                                <li>Product page optimization</li>
+                                <li>Checkout funnel analysis</li>
+                                <li>Retargeting campaigns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card bg-white">
+                        <div class="service-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <h4 class="card-title fw-bold">Content Creation</h4>
+                            <p class="card-text">Tell your brand story with compelling content that resonates with South African consumers.</p>
+                            <ul class="text-start mt-4">
+                                <li>Blog writing & strategy</li>
+                                <li>Video production</li>
+                                <li>Infographic design</li>
+                                <li>Podcast production</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card bg-white">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <h4 class="card-title fw-bold">Analytics & Reporting</h4>
+                            <p class="card-text">Make data-driven decisions with insights tailored to the South African digital landscape.</p>
+                            <ul class="text-start mt-4">
+                                <li>Custom dashboard setup</li>
+                                <li>ROI tracking</li>
+                                <li>Competitor analysis</li>
+                                <li>Monthly performance reports</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <section class="stats-banner">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <h2 class="display-4 fw-bold">250+</h2>
+                    <p>South African Clients</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <h2 class="display-4 fw-bold">R15M+</h2>
+                    <p>Revenue Generated</p>
+                </div>
+                <div class="col-md-3 col-6">
+                    <h2 class="display-4 fw-bold">98%</h2>
+                    <p>Client Retention</p>
+                </div>
+                <div class="col-md-3 col-6">
+                    <h2 class="display-4 fw-bold">15+</h2>
+                    <p>Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Our Team" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title text-start">Why Choose Us</h2>
+                    <p class="lead">We understand the unique challenges and opportunities of the South African digital market.</p>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h5>Local Market Expertise</h5>
+                            <p>Our strategies are built on deep understanding of South African consumer behavior, culture, and digital trends.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h5>Proven Results</h5>
+                            <p>We've helped businesses across South Africa achieve measurable growth and ROI from their digital investments.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h5>Transparent Reporting</h5>
+                            <p>Get clear, actionable insights with our comprehensive monthly reports that show exactly how your budget is performing.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex">
+                        <div class="feature-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h5>Dedicated Support</h5>
+                            <p>Your success is our priority. We provide personalized support and regular strategy reviews.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title fw-bold">Success Stories from South Africa</h2>
+                    <p class="lead">Hear from businesses we've helped grow</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="testimonial-card bg-white p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Client" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Nomsa Dlamini</h5>
+                                <p class="mb-0 text-muted">Cape Town Fashion Boutique</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">"SA Digital Edge transformed our online presence. Our e-commerce sales increased by 220% within 6 months. Their understanding of the South African fashion market is exceptional."</p>
+                        <div class="mt-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="testimonial-card bg-white p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Client" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Thabo Mbeki</h5>
+                                <p class="mb-0 text-muted">Johannesburg Tech Startup</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">"We struggled to gain traction until we partnered with SA Digital Edge. Their targeted social media campaigns helped us acquire 3,500 qualified leads in just 90 days."</p>
+                        <div class="mt-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="testimonial-card bg-white p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Lerato Smith</h5>
+                                <p class="mb-0 text-muted">Durban Restaurant Group</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Our bookings increased by 150% after implementing their local SEO strategy. They understand how South Africans search for restaurants better than anyone."</p>
+                        <div class="mt-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-5">
+        <div class="container py-5">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title fw-bold">Transparent Pricing Plans</h2>
+                    <p class="lead">Flexible packages designed for South African businesses of all sizes</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="pricing-card bg-white h-100">
+                        <div class="pricing-header text-center">
+                            <h4 class="fw-bold">Starter</h4>
+                            <h2 class="display-4 fw-bold mt-3">R4,999<span class="fs-6 fw-normal">/mo</span></h2>
+                            <p class="mb-0">Perfect for small businesses</p>
+                        </div>
+                        <div class="card-body p-4">
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> SEO Audit & Basic Optimization</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Social Media Management (2 platforms)</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> 4 Blog Posts/Month</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Basic Analytics Report</li>
+                                <li class="mb-3"><i class="fas fa-times text-secondary me-2"></i> Paid Advertising</li>
+                                <li class="mb-3"><i class="fas fa-times text-secondary me-2"></i> Email Marketing</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-outline-primary w-100">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="pricing-card bg-white h-100 popular">
+                        <span class="popular-badge">MOST POPULAR</span>
+                        <div class="pricing-header text-center">
+                            <h4 class="fw-bold">Growth</h4>
+                            <h2 class="display-4 fw-bold mt-3">R9,999<span class="fs-6 fw-normal">/mo</span></h2>
+                            <p class="mb-0">Ideal for growing businesses</p>
+                        </div>
+                        <div class="card-body p-4">
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Comprehensive SEO Strategy</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Social Media Management (4 platforms)</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> 8 Blog Posts/Month</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Advanced Analytics Dashboard</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> R2,500 Ad Credit</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Email Marketing Campaigns</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-primary w-100">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="pricing-card bg-white h-100">
+                        <div class="pricing-header text-center">
+                            <h4 class="fw-bold">Enterprise</h4>
+                            <h2 class="display-4 fw-bold mt-3">R19,999<span class="fs-6 fw-normal">/mo</span></h2>
+                            <p class="mb-0">For established businesses</p>
+                        </div>
+                        <div class="card-body p-4">
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Full-Scale Digital Strategy</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Dedicated Account Manager</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> 16 Blog Posts/Month</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Custom Analytics & Reporting</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> R5,000 Ad Credit</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Comprehensive Email & SMS Marketing</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-outline-primary w-100">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <p>Need a custom solution? <a href="#contact">Contact us</a> for enterprise-level pricing</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Options -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h2 class="fw-bold mb-4">Secure Payment Options</h2>
+                    <p class="lead mb-4">We accept all major South African payment methods for your convenience</p>
+                    
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <div class="payment-icon">
+                            <img src="https://www.payfast.co.za/assets/images/logos/payfast_logo_icon.svg" alt="PayFast" height="20">
+                        </div>
+                        <div class="payment-icon">
+                            <i class="fab fa-cc-visa fs-4 text-primary"></i>
+                        </div>
+                        <div class="payment-icon">
+                            <i class="fab fa-cc-mastercard fs-4 text-dark"></i>
+                        </div>
+                        <div class="payment-icon">
+                            <i class="fab fa-cc-amex fs-4 text-info"></i>
+                        </div>
+                        <div class="payment-icon">
+                            <i class="fab fa-cc-paypal fs-4 text-primary"></i>
+                        </div>
+                        <div class="payment-icon">
+                            <span class="fw-bold">EFT</span>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex">
+                        <div class="me-4">
+                            <i class="fas fa-lock fs-1 text-success"></i>
+                        </div>
+                        <div>
+                            <h5>Secure Transactions</h5>
+                            <p>All payments are processed through PCI-compliant gateways with bank-level security.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-form">
+                        <h3 class="mb-4">Start Your Digital Journey</h3>
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Your Name</label>
+                                <input type="text" class="form-control" placeholder="Full Name">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" placeholder="Email">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" placeholder="Phone">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Business Name</label>
+                                <input type="text" class="form-control" placeholder="Business Name">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Select Service</label>
+                                <select class="form-select">
+                                    <option>SEO Optimization</option>
+                                    <option>Social Media Marketing</option>
+                                    <option>Email Marketing</option>
+                                    <option>E-commerce Solutions</option>
+                                    <option>Content Creation</option>
+                                    <option>Full Package</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Get Your Free Strategy Session</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto text-center">
+                    <h2 class="display-5 fw-bold mb-4">Ready to Grow Your South African Business Online?</h2>
+                    <p class="lead mb-5">Join hundreds of successful South African businesses that trust us with their digital marketing.</p>
+                    <a href="#contact" class="btn btn-primary btn-lg px-5">Schedule a Free Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-5">
+        <div class="container py-5">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title fw-bold">Contact Us</h2>
+                    <p class="lead">Get in touch with our South African team</p>
+                </div>
+            </div>
+            
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.093179234687!2d28.03851541502905!3d-26.19374198344369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950c1b1d1c1b9d%3A0x2a8a9d9d9d9d9d9d!2sJohannesburg%2C%20South%20Africa!5e0!3m2!1sen!2sus!4v1629999999999!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-4">
+                            <h5><i class="fas fa-map-marker-alt me-2 text-primary"></i> Johannesburg Office</h5>
+                            <p class="mb-0">123 Digital Street</p>
+                            <p class="mb-0">Sandton, 2196</p>
+                            <p>Johannesburg, South Africa</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5><i class="fas fa-map-marker-alt me-2 text-primary"></i> Cape Town Office</h5>
+                            <p class="mb-0">45 Tech Avenue</p>
+                            <p class="mb-0">Century City, 7446</p>
+                            <p>Cape Town, South Africa</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5><i class="fas fa-phone me-2 text-primary"></i> Phone</h5>
+                            <p>+27 11 123 4567</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5><i class="fas fa-envelope me-2 text-primary"></i> Email</h5>
+                            <p>info@sadigitaledge.co.za</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="contact-form">
+                        <h3 class="mb-4">Send Us a Message</h3>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" placeholder="First Name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" placeholder="Email">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" placeholder="Phone">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Subject</label>
+                                <input type="text" class="form-control" placeholder="Subject">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-control" rows="5" placeholder="Your Message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h3 class="text-white mb-4"><span class="text-primary">SA</span> Digital Edge</h3>
+                    <p class="mb-4">We help South African businesses thrive in the digital landscape with tailored marketing strategies that deliver measurable results.</p>
+                    <div class="d-flex">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#services" class="text-white text-decoration-none">Services</a></li>
+                        <li class="mb-2"><a href="#about" class="text-white text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="#pricing" class="text-white text-decoration-none">Pricing</a></li>
+                        <li class="mb-2"><a href="#contact" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="text-white mb-4">Our Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">SEO Optimization</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Social Media Marketing</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Email Marketing</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Content Creation</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">E-commerce Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p>Subscribe for digital marketing tips for South African businesses</p>
+                    <form>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email">
+                            <button class="btn btn-primary" type="button">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom mt-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="mb-0">&copy; 2023 SA Digital Edge. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                        <a href="#" class="text-white text-decoration-none">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Sticky navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-sm');
+            }
+        });
+    </script>
+</body>
+</html>
