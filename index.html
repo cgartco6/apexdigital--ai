@@ -3,28 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Digital | AI Ecosystem on GitHub</title>
+    <title>AgentForge - Custom AI Agent Ecosystem</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --primary: #0d47a1;
-            --primary-dark: #002171;
-            --secondary: #ff6f00;
-            --accent: #4caf50;
-            --light: #f5f9ff;
-            --dark: #1a237e;
-            --success: #2e7d32;
-            --danger: #d32f2f;
-            --warning: #f57c00;
-            --github-bg: #0d1117;
-            --github-border: #30363d;
-            --github-text: #c9d1d9;
-            --github-header: #161b22;
-            --gradient: linear-gradient(135deg, #0d47a1 0%, #002171 100%);
-            --gradient-accent: linear-gradient(135deg, #ff6f00 0%, #e65100 100%);
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --primary: #2563eb;
+            --secondary: #0f172a;
+            --accent: #8b5cf6;
+            --light: #f1f5f9;
+            --dark: #0f172a;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
         }
         
         * {
@@ -35,1157 +25,803 @@
         }
         
         body {
-            background: var(--github-bg);
-            color: var(--github-text);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
         }
         
-        /* GitHub-like Header */
-        .github-header {
-            background: var(--github-header);
-            padding: 16px;
-            border-bottom: 1px solid var(--github-border);
+        header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
-        .repo-header {
+        .logo {
             display: flex;
             align-items: center;
-            gap: 16px;
-        }
-        
-        .repo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-        
-        .repo-info {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .repo-name {
-            font-weight: 600;
-            font-size: 20px;
-        }
-        
-        .repo-name a {
-            color: var(--github-text);
-            text-decoration: none;
-        }
-        
-        .repo-name a:hover {
-            text-decoration: underline;
-        }
-        
-        .repo-description {
-            font-size: 14px;
-            color: #8b949e;
-        }
-        
-        .repo-actions {
-            display: flex;
             gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light);
         }
         
-        .github-btn {
-            padding: 5px 16px;
-            background: #21262d;
-            border: 1px solid var(--github-border);
-            border-radius: 6px;
-            color: var(--github-text);
-            font-weight: 500;
+        .logo i {
+            color: var(--accent);
+        }
+        
+        nav ul {
             display: flex;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
-            transition: var(--transition);
+            list-style: none;
+            gap: 2rem;
         }
         
-        .github-btn:hover {
-            background: #30363d;
-            border-color: #8b949e;
-        }
-        
-        .github-btn.primary {
-            background: #238636;
-            border-color: #2ea043;
-        }
-        
-        .github-btn.primary:hover {
-            background: #2ea043;
-        }
-        
-        /* Navigation Tabs */
-        .repo-nav {
-            background: var(--github-header);
-            padding: 0 16px;
-            border-bottom: 1px solid var(--github-border);
-            display: flex;
-        }
-        
-        .repo-tab {
-            padding: 16px 8px;
-            margin-right: 16px;
-            font-size: 14px;
-            color: #8b949e;
+        nav a {
+            color: var(--light);
             text-decoration: none;
-            border-bottom: 2px solid transparent;
-            transition: var(--transition);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1.1rem;
         }
         
-        .repo-tab:hover, .repo-tab.active {
-            color: var(--github-text);
-            border-bottom-color: #f78166;
+        nav a:hover {
+            color: var(--accent);
         }
         
-        /* Main Content */
-        .repo-container {
-            max-width: 1400px;
-            margin: 24px auto;
-            padding: 0 16px;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 24px;
-        }
-        
-        /* Sidebar - File Explorer */
-        .file-explorer {
-            background: var(--github-header);
-            border: 1px solid var(--github-border);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        
-        .explorer-header {
-            padding: 16px;
-            border-bottom: 1px solid var(--github-border);
+        .cta-button {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .file-tree {
-            padding: 8px 0;
-        }
-        
-        .file-item {
-            padding: 8px 16px 8px 32px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
+            transition: all 0.3s;
+            border: none;
             cursor: pointer;
-            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
             position: relative;
-        }
-        
-        .file-item:hover {
-            background: rgba(110, 118, 129, 0.1);
-        }
-        
-        .file-item.active {
-            background: rgba(56, 139, 253, 0.15);
-        }
-        
-        .file-item.active::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #1f6feb;
-        }
-        
-        .file-icon {
-            color: #8b949e;
-        }
-        
-        /* Dashboard Content */
-        .dashboard-content {
-            background: var(--github-header);
-            border: 1px solid var(--github-border);
-            border-radius: 6px;
             overflow: hidden;
         }
         
-        .dashboard-header {
-            padding: 16px;
-            border-bottom: 1px solid var(--github-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+            padding-top: 100px;
         }
         
-        .dashboard-header h1 {
-            font-size: 20px;
-            font-weight: 600;
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
         }
         
-        .dashboard-body {
-            padding: 24px;
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
         }
         
-        /* Dashboard Grid */
-        .dashboard-grid {
+        .hero-bg {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(15, 23, 42, 0) 70%);
+            z-index: 1;
+        }
+        
+        .ai-visualization {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40%;
+            max-width: 500px;
+            z-index: 2;
+        }
+        
+        .features {
+            padding: 8rem 5%;
+            background: rgba(30, 41, 59, 0.5);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-bottom: 24px;
-        }
-        
-        /* Dashboard Cards */
-        .dashboard-card {
-            background: #0d1117;
-            border: 1px solid var(--github-border);
-            border-radius: 6px;
-            padding: 24px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .dashboard-card:hover {
-            border-color: #3a424a;
-        }
-        
-        .dashboard-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--primary);
-        }
-        
-        .card-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--github-border);
-        }
-        
-        .card-header i {
-            font-size: 24px;
-            color: var(--primary);
-            margin-right: 15px;
-        }
-        
-        .card-header h2 {
-            font-size: 18px;
-            color: var(--github-text);
-        }
-        
-        /* AI Agents Section */
-        .agents-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
-        }
-        
-        .agent-card {
-            background: #161b22;
-            border: 1px solid var(--github-border);
-            border-radius: 6px;
-            padding: 16px;
-            transition: var(--transition);
-        }
-        
-        .agent-card:hover {
-            border-color: #3a424a;
-        }
-        
-        .agent-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        
-        .agent-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 6px;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-            margin-right: 12px;
-        }
-        
-        .agent-name {
-            font-weight: 600;
-            font-size: 14px;
-        }
-        
-        .agent-status {
-            font-size: 12px;
-            padding: 2px 8px;
-            border-radius: 14px;
-            background: rgba(46, 125, 50, 0.1);
-            color: var(--success);
-            margin-top: 4px;
-        }
-        
-        .agent-status.inactive {
-            background: rgba(211, 47, 47, 0.1);
-            color: var(--danger);
-        }
-        
-        .agent-metrics {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 12px;
-            font-size: 12px;
-        }
-        
-        .metric {
-            text-align: center;
-        }
-        
-        .metric-value {
-            font-weight: 700;
-            font-size: 16px;
-        }
-        
-        .metric-label {
-            color: #8b949e;
-            font-size: 12px;
-        }
-        
-        /* Charts */
-        .chart-container {
-            height: 250px;
-            margin-top: 20px;
-            position: relative;
-        }
-        
-        /* Financial Section */
-        .financial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
-        }
-        
-        .financial-card {
-            background: #161b22;
-            border: 1px solid var(--github-border);
-            border-radius: 6px;
-            padding: 16px;
-            text-align: center;
-        }
-        
-        .financial-value {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 10px 0;
-        }
-        
-        .financial-value.income {
-            color: var(--success);
-        }
-        
-        .financial-value.expense {
-            color: var(--danger);
-        }
-        
-        .financial-label {
-            color: #8b949e;
-            font-size: 12px;
-        }
-        
-        /* Content Creation */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
-        }
-        
-        .content-card {
-            background: #161b22;
-            border: 1px solid var(--github-border);
-            border-radius: 6px;
-            padding: 16px;
-            text-align: center;
-            transition: var(--transition);
-        }
-        
-        .content-card:hover {
-            border-color: #3a424a;
-        }
-        
-        .content-icon {
-            font-size: 24px;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-        
-        /* Security Section */
-        .security-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
-        }
-        
-        .security-card {
-            background: #161b22;
-            border: 1px solid var(--github-border);
-            border-radius: 6px;
-            padding: 16px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .security-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--success);
-        }
-        
-        .security-card.warning::after {
-            background: var(--warning);
-        }
-        
-        .security-card.danger::after {
-            background: var(--danger);
-        }
-        
-        .security-icon {
-            font-size: 24px;
-            color: var(--github-text);
-            margin-bottom: 12px;
-        }
-        
-        /* Controls */
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 24px;
-            flex-wrap: wrap;
-        }
-        
-        .github-btn.lg {
-            padding: 8px 20px;
-            font-size: 14px;
-        }
-        
-        /* Footer */
-        .footer {
-            background: var(--github-header);
-            color: var(--github-text);
-            padding: 24px;
-            margin-top: 40px;
-            border-top: 1px solid var(--github-border);
-        }
-        
-        .footer-container {
-            max-width: 1400px;
+            gap: 2rem;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .agents {
+            padding: 8rem 5%;
+        }
+        
+        .agent-system {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .central-agent {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
+            margin-bottom: 6rem;
+        }
+        
+        .central-agent i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .agent-ring {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            margin: -100px auto 0;
+        }
+        
+        .sub-agent {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: var(--secondary);
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .sub-agent:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+        }
+        
+        .sub-agent i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .sub-agent:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+        .sub-agent:nth-child(2) { top: 15%; right: 10%; }
+        .sub-agent:nth-child(3) { top: 40%; right: 5%; }
+        .sub-agent:nth-child(4) { bottom: 15%; right: 10%; }
+        .sub-agent:nth-child(5) { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .sub-agent:nth-child(6) { bottom: 15%; left: 10%; }
+        .sub-agent:nth-child(7) { top: 40%; left: 5%; }
+        .sub-agent:nth-child(8) { top: 15%; left: 10%; }
+        
+        .pricing {
+            padding: 8rem 5%;
+            background: rgba(15, 23, 42, 0.7);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            padding: 3rem 2rem;
             text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border-color: var(--accent);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            position: relative;
+        }
+        
+        .pricing-card.featured::before {
+            content: "RECOMMENDED";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1.5rem 0;
+            color: var(--accent);
+        }
+        
+        .price span {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-features li i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+        
+        footer {
+            padding: 4rem 5% 2rem;
+            background: var(--secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-col h3::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
         }
         
         .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
         }
         
         .footer-links a {
-            color: #58a6ff;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            font-size: 12px;
+            transition: color 0.3s;
         }
         
         .footer-links a:hover {
-            text-decoration: underline;
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
         }
         
         .copyright {
-            color: #8b949e;
-            font-size: 12px;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
         }
         
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .repo-container {
-                grid-template-columns: 1fr;
+        .animated {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
             }
             
-            .file-explorer {
+            .ai-visualization {
                 display: none;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+            
+            .agent-ring {
+                transform: scale(0.8);
             }
         }
         
         @media (max-width: 768px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
+            nav ul {
+                display: none;
             }
             
-            .repo-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
+            .hero h1 {
+                font-size: 2.3rem;
             }
             
-            .repo-actions {
-                width: 100%;
-                justify-content: space-between;
-                margin-top: 12px;
+            .section-title h2 {
+                font-size: 2rem;
             }
             
-            .github-btn {
-                flex: 1;
-                justify-content: center;
+            .central-agent {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .agent-ring {
+                transform: scale(0.6);
+                margin-top: -150px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .agent-ring {
+                transform: scale(0.5);
+                margin-top: -200px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- GitHub-like Header -->
-    <header class="github-header">
-        <div class="repo-header">
-            <div class="repo-icon">
-                <i class="fas fa-brain"></i>
-            </div>
-            <div class="repo-info">
-                <div class="repo-name">
-                    <a href="#">ApexDigitalAI / ecosystem</a>
-                </div>
-                <div class="repo-description">
-                    Self-managing team of specialized AI agents handling all aspects of business operations
-                </div>
-            </div>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-robot"></i>
+            <span>AgentForge</span>
         </div>
-        <div class="repo-actions">
-            <button class="github-btn">
-                <i class="far fa-eye"></i> Watch
-            </button>
-            <button class="github-btn">
-                <i class="fas fa-code-branch"></i> Fork
-            </button>
-            <button class="github-btn">
-                <i class="far fa-star"></i> Star
-            </button>
-            <button class="github-btn primary">
-                <i class="fas fa-download"></i> Clone
-            </button>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#agents">Agents</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="#contact" class="cta-button">Get Started</a>
     </header>
-    
-    <!-- Navigation Tabs -->
-    <nav class="repo-nav">
-        <a href="#" class="repo-tab active">
-            <i class="fas fa-code"></i> Code
-        </a>
-        <a href="#" class="repo-tab">
-            <i class="fas fa-list"></i> AI Agents
-        </a>
-        <a href="#" class="repo-tab">
-            <i class="fas fa-chart-line"></i> Analytics
-        </a>
-        <a href="#" class="repo-tab">
-            <i class="fas fa-shield-alt"></i> Security
-        </a>
-        <a href="#" class="repo-tab">
-            <i class="fas fa-cog"></i> Settings
-        </a>
-    </nav>
-    
-    <!-- Main Content -->
-    <div class="repo-container">
-        <!-- Sidebar - File Explorer -->
-        <div class="file-explorer">
-            <div class="explorer-header">
-                <i class="fas fa-folder"></i>
-                <span>ApexDigitalAI / ecosystem</span>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content animated">
+            <h1>Create Custom AI Agents That Build More Agents</h1>
+            <p>Revolutionary AI ecosystem that designs, deploys, and manages specialized agents to handle any project from app development to financial security.</p>
+            <a href="#features" class="cta-button">Explore Our Ecosystem</a>
+        </div>
+        <div class="hero-bg"></div>
+        <div class="ai-visualization">
+            <div class="central-agent">
+                <i class="fas fa-brain"></i>
+                <span>Director Agent</span>
             </div>
-            <div class="file-tree">
-                <div class="file-item active">
-                    <i class="fas fa-folder file-icon"></i>
-                    <span>ai-agents</span>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-title animated">
+            <h2>Our Custom Development Services</h2>
+            <p>We create specialized solutions that grow and adapt with your business needs</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card animated">
+                <div class="feature-icon">
+                    <i class="fas fa-code"></i>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-file-code file-icon"></i>
-                    <span>content-creator.js</span>
+                <h3>Custom App Development</h3>
+                <p>Tailor-made applications designed to solve your specific business challenges with cutting-edge technology.</p>
+            </div>
+            
+            <div class="feature-card animated">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-file-code file-icon"></i>
-                    <span>support-nexus.js</span>
+                <h3>AI Agent Creation</h3>
+                <p>Intelligent agents that can create other specialized agents to handle complex, multi-faceted projects.</p>
+            </div>
+            
+            <div class="feature-card animated">
+                <div class="feature-icon">
+                    <i class="fas fa-calculator"></i>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-file-code file-icon"></i>
-                    <span>sentinel-guard.js</span>
+                <h3>Advanced Algorithms</h3>
+                <p>Custom algorithms optimized for your specific data challenges and business objectives.</p>
+            </div>
+            
+            <div class="feature-card animated">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-file-code file-icon"></i>
-                    <span>quantum-finance.js</span>
+                <h3>Financial Security Systems</h3>
+                <p>Military-grade security solutions to protect your financial data and transactions from threats.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agent Ecosystem Section -->
+    <section id="agents" class="agents">
+        <div class="section-title animated">
+            <h2>AI Agent Ecosystem</h2>
+            <p>Our Director Agent creates and manages specialized sub-agents to handle every aspect of your project</p>
+        </div>
+        
+        <div class="agent-system">
+            <div class="central-agent">
+                <i class="fas fa-brain"></i>
+                <span>Director Agent</span>
+            </div>
+            
+            <div class="agent-ring">
+                <div class="sub-agent">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Marketing</span>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-folder file-icon"></i>
-                    <span>workflows</span>
+                <div class="sub-agent">
+                    <i class="fas fa-hashtag"></i>
+                    <span>Social Media</span>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-file-code file-icon"></i>
-                    <span>self-improvement.yml</span>
+                <div class="sub-agent">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Security</span>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-file-code file-icon"></i>
-                    <span>security-audit.yml</span>
+                <div class="sub-agent">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Self-Healing</span>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-file-code file-icon"></i>
-                    <span>content-generation.yml</span>
+                <div class="sub-agent">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Training</span>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-folder file-icon"></i>
-                    <span>financial</span>
+                <div class="sub-agent">
+                    <i class="fas fa-balance-scale"></i>
+                    <span>Compliance</span>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-file-alt file-icon"></i>
-                    <span>sars-compliance.md</span>
+                <div class="sub-agent">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Payments</span>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-file-invoice file-icon"></i>
-                    <span>payouts.json</span>
+                <div class="sub-agent">
+                    <i class="fas fa-plus"></i>
+                    <span>Create New</span>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-folder file-icon"></i>
-                    <span>docs</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialized Agents Section -->
+    <section class="features">
+        <div class="section-title animated">
+            <h2>Specialized Agent Capabilities</h2>
+            <p>Each agent has unique capabilities that work together to complete your projects</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card animated">
+                <div class="feature-icon">
+                    <i class="fas fa-bullhorn"></i>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-book file-icon"></i>
-                    <span>README.md</span>
+                <h3>Marketing Agent</h3>
+                <p>Automatically promotes your services across all digital channels with optimized campaigns.</p>
+            </div>
+            
+            <div class="feature-card animated">
+                <div class="feature-icon">
+                    <i class="fas fa-hashtag"></i>
                 </div>
-                <div class="file-item">
-                    <i class="fas fa-shield-alt file-icon"></i>
-                    <span>SECURITY.md</span>
+                <h3>Social Media Agent</h3>
+                <p>Manages and posts content across all platforms (TikTok, Facebook, Instagram, etc.) 24/7.</p>
+            </div>
+            
+            <div class="feature-card animated">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
                 </div>
+                <h3>Military-Grade Security</h3>
+                <p>Advanced protection against theft, cloning, copying, and unauthorized access.</p>
+            </div>
+            
+            <div class="feature-card animated">
+                <div class="feature-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3>Self-Healing & Auto-Update</h3>
+                <p>Agents automatically update, repair, and improve themselves without downtime.</p>
+            </div>
+            
+            <div class="feature-card animated">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Continuous Training</h3>
+                <p>Models constantly train and retrain using the latest data to maintain peak performance.</p>
+            </div>
+            
+            <div class="feature-card animated">
+                <div class="feature-icon">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <h3>Compliance Agent</h3>
+                <p>Ensures all operations meet South African and international regulatory requirements.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="section-title animated">
+            <h2>Flexible Pricing</h2>
+            <p>Start with our free tier and automatically upgrade as your needs grow</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card animated">
+                <h3>Starter</h3>
+                <div class="price">Free</div>
+                <p>Perfect for individuals and small projects</p>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Basic Director Agent</li>
+                    <li><i class="fas fa-check"></i> 2 Sub-Agents</li>
+                    <li><i class="fas fa-check"></i> Community Support</li>
+                    <li><i class="fas fa-check"></i> Free AI Tools</li>
+                    <li><i class="fas fa-times"></i> Auto-Upgrade</li>
+                    <li><i class="fas fa-times"></i> Advanced Security</li>
+                </ul>
+                <a href="#contact" class="cta-button">Get Started</a>
+            </div>
+            
+            <div class="pricing-card featured animated">
+                <h3>Professional</h3>
+                <div class="price">R899<span>/month</span></div>
+                <p>For growing businesses and serious projects</p>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Advanced Director Agent</li>
+                    <li><i class="fas fa-check"></i> 8 Sub-Agents</li>
+                    <li><i class="fas fa-check"></i> Priority Support</li>
+                    <li><i class="fas fa-check"></i> Mixed AI Tools</li>
+                    <li><i class="fas fa-check"></i> Auto-Upgrade System</li>
+                    <li><i class="fas fa-check"></i> Enhanced Security</li>
+                </ul>
+                <a href="#contact" class="cta-button">Get Started</a>
+            </div>
+            
+            <div class="pricing-card animated">
+                <h3>Enterprise</h3>
+                <div class="price">Custom</div>
+                <p>For large organizations with complex needs</p>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Unlimited Agents</li>
+                    <li><i class="fas fa-check"></i> Dedicated AI Cluster</li>
+                    <li><i class="fas fa-check"></i> 24/7 Premium Support</li>
+                    <li><i class="fas fa-check"></i> Paid AI Tools</li>
+                    <li><i class="fas fa-check"></i> Full Auto-Upgrade</li>
+                    <li><i class="fas fa-check"></i> Military-Grade Security</li>
+                </ul>
+                <a href="#contact" class="cta-button">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>AgentForge</span>
+                </div>
+                <p>Creating intelligent agent ecosystems that build more intelligent agents to solve your most complex challenges.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Custom App Development</a></li>
+                    <li><a href="#">AI Agent Creation</a></li>
+                    <li><a href="#">Algorithm Development</a></li>
+                    <li><a href="#">Financial Security Systems</a></li>
+                    <li><a href="#">AI Ecosystem Deployment</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Technology</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> Cape Town, South Africa</li>
+                    <li><i class="fas fa-phone"></i> +27 21 123 4567</li>
+                    <li><i class="fas fa-envelope"></i> info@agentforge.co.za</li>
+                    <li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 5PM SAST</li>
+                </ul>
             </div>
         </div>
         
-        <!-- Dashboard Content -->
-        <div class="dashboard-content">
-            <div class="dashboard-header">
-                <h1>AI Ecosystem Dashboard</h1>
-                <div>
-                    <span class="github-btn">
-                        <i class="fas fa-sync-alt"></i> Refresh
-                    </span>
-                </div>
-            </div>
-            <div class="dashboard-body">
-                <!-- AI Agents Section -->
-                <div class="dashboard-card">
-                    <div class="card-header">
-                        <i class="fas fa-robot"></i>
-                        <h2>AI Agent Management</h2>
-                    </div>
-                    <p>Our team of specialized AI agents work together to handle all business functions autonomously.</p>
-                    
-                    <div class="agents-grid">
-                        <!-- Content Creation Agent -->
-                        <div class="agent-card">
-                            <div class="agent-header">
-                                <div class="agent-icon">
-                                    <i class="fas fa-film"></i>
-                                </div>
-                                <div>
-                                    <div class="agent-name">Content Creator Pro</div>
-                                    <div class="agent-status">Active</div>
-                                </div>
-                            </div>
-                            <p>Generates 4K video, audio, images, and text content. Creates other specialized agents as needed.</p>
-                            <div class="agent-metrics">
-                                <div class="metric">
-                                    <div class="metric-value">98%</div>
-                                    <div class="metric-label">Quality</div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-value">124</div>
-                                    <div class="metric-label">Projects</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Customer Support Agent -->
-                        <div class="agent-card">
-                            <div class="agent-header">
-                                <div class="agent-icon">
-                                    <i class="fas fa-headset"></i>
-                                </div>
-                                <div>
-                                    <div class="agent-name">Support Nexus</div>
-                                    <div class="agent-status">Active</div>
-                                </div>
-                            </div>
-                            <p>Human-like customer support with emotional intelligence. Manages team of sub-agents.</p>
-                            <div class="agent-metrics">
-                                <div class="metric">
-                                    <div class="metric-value">99%</div>
-                                    <div class="metric-label">Satisfaction</div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-value">87</div>
-                                    <div class="metric-label">Issues/day</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Security Agent -->
-                        <div class="agent-card">
-                            <div class="agent-header">
-                                <div class="agent-icon">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <div>
-                                    <div class="agent-name">Sentinel Guard</div>
-                                    <div class="agent-status">Active</div>
-                                </div>
-                            </div>
-                            <p>Military-grade security with real-time threat detection and self-healing protocols.</p>
-                            <div class="agent-metrics">
-                                <div class="metric">
-                                    <div class="metric-value">100%</div>
-                                    <div class="metric-label">Uptime</div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-value">0</div>
-                                    <div class="metric-label">Breaches</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Financial Agent -->
-                        <div class="agent-card">
-                            <div class="agent-header">
-                                <div class="agent-icon">
-                                    <i class="fas fa-money-bill-wave"></i>
-                                </div>
-                                <div>
-                                    <div class="agent-name">Quantum Finance</div>
-                                    <div class="agent-status">Active</div>
-                                </div>
-                            </div>
-                            <p>Self-funding system with automatic SARS compliance and owner payouts.</p>
-                            <div class="agent-metrics">
-                                <div class="metric">
-                                    <div class="metric-value">R 284K</div>
-                                    <div class="metric-label">This Month</div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-value">0.0%</div>
-                                    <div class="metric-label">Tax Errors</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Financial Dashboard -->
-                <div class="dashboard-card">
-                    <div class="card-header">
-                        <i class="fas fa-chart-line"></i>
-                        <h2>Financial Dashboard</h2>
-                    </div>
-                    <p>Self-funding ecosystem with automatic SARS compliance and owner payouts</p>
-                    
-                    <div class="chart-container">
-                        <canvas id="financeChart"></canvas>
-                    </div>
-                    
-                    <div class="financial-grid">
-                        <div class="financial-card">
-                            <div class="financial-value income">R 128,450</div>
-                            <div class="financial-label">Monthly Revenue</div>
-                        </div>
-                        <div class="financial-card">
-                            <div class="financial-value">R 42,800</div>
-                            <div class="financial-label">AI Fund Balance</div>
-                        </div>
-                        <div class="financial-card">
-                            <div class="financial-value expense">R 25,000</div>
-                            <div class="financial-label">Owner Payout</div>
-                        </div>
-                        <div class="financial-card">
-                            <div class="financial-value">R 12,400</div>
-                            <div class="financial-label">SARS Reserve</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Content Creation Section -->
-                <div class="dashboard-card">
-                    <div class="card-header">
-                        <i class="fas fa-photo-video"></i>
-                        <h2>Content Creation Hub</h2>
-                    </div>
-                    <p>4K quality video, audio, images and text generated on demand</p>
-                    
-                    <div class="content-grid">
-                        <div class="content-card">
-                            <div class="content-icon">
-                                <i class="fas fa-video"></i>
-                            </div>
-                            <h3>4K Video Production</h3>
-                            <p>AI-generated videos with human-like avatars</p>
-                            <div class="metric-value">42 projects</div>
-                        </div>
-                        
-                        <div class="content-card">
-                            <div class="content-icon">
-                                <i class="fas fa-microphone"></i>
-                            </div>
-                            <h3>Audio Production</h3>
-                            <p>Studio-quality voiceovers and sound effects</p>
-                            <div class="metric-value">87 projects</div>
-                        </div>
-                        
-                        <div class="content-card">
-                            <div class="content-icon">
-                                <i class="fas fa-image"></i>
-                            </div>
-                            <h3>Image Generation</h3>
-                            <p>Photorealistic images from text prompts</p>
-                            <div class="metric-value">156 projects</div>
-                        </div>
-                        
-                        <div class="content-card">
-                            <div class="content-icon">
-                                <i class="fas fa-file-alt"></i>
-                            </div>
-                            <h3>Text Content</h3>
-                            <p>SEO-optimized articles, scripts, and copy</p>
-                            <div class="metric-value">284 projects</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Security & Compliance -->
-                <div class="dashboard-card">
-                    <div class="card-header">
-                        <i class="fas fa-user-shield"></i>
-                        <h2>Security & Compliance</h2>
-                    </div>
-                    <p>Military-grade security with self-healing protocols and SARS compliance</p>
-                    
-                    <div class="security-grid">
-                        <div class="security-card">
-                            <div class="security-icon">
-                                <i class="fas fa-fingerprint"></i>
-                            </div>
-                            <h3>Threat Detection</h3>
-                            <p>Real-time monitoring for cloning and attacks</p>
-                            <div class="metric-value">0 threats</div>
-                        </div>
-                        
-                        <div class="security-card">
-                            <div class="security-icon">
-                                <i class="fas fa-heartbeat"></i>
-                            </div>
-                            <h3>Self-Healing System</h3>
-                            <p>Automatically repairs vulnerabilities</p>
-                            <div class="metric-value">12 repairs</div>
-                        </div>
-                        
-                        <div class="security-card">
-                            <div class="security-icon">
-                                <i class="fas fa-balance-scale"></i>
-                            </div>
-                            <h3>SARS Compliance</h3>
-                            <p>Automatic tax tracking and reporting</p>
-                            <div class="metric-value">100% compliant</div>
-                        </div>
-                        
-                        <div class="security-card">
-                            <div class="security-icon">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <h3>Agent Integrity</h3>
-                            <p>Continuous verification of AI agents</p>
-                            <div class="metric-value">All verified</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Performance & Improvement -->
-                <div class="dashboard-card">
-                    <div class="card-header">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <h2>Performance & Self-Improvement</h2>
-                    </div>
-                    <p>Continuous learning and optimization of the AI ecosystem</p>
-                    
-                    <div class="chart-container">
-                        <canvas id="performanceChart"></canvas>
-                    </div>
-                    
-                    <div class="controls">
-                        <button class="github-btn lg">
-                            <i class="fas fa-sync-alt"></i> Initiate Self-Optimization
-                        </button>
-                        <button class="github-btn lg">
-                            <i class="fas fa-code-branch"></i> Deploy New Capabilities
-                        </button>
-                        <button class="github-btn lg">
-                            <i class="fas fa-file-invoice"></i> Generate SARS Report
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-links">
-                <a href="#">Terms</a>
-                <a href="#">Privacy</a>
-                <a href="#">Security</a>
-                <a href="#">Status</a>
-                <a href="#">Docs</a>
-                <a href="#">Contact</a>
-                <a href="#">Manage Cookies</a>
-                <a href="#">Do Not Sell My Personal Information</a>
-            </div>
-            <div class="copyright">
-                © 2023 Apex Digital AI Ecosystem. All systems operational. Self-improvement cycle #1248 in progress.
-            </div>
+        <div class="copyright">
+            <p>&copy; 2023 AgentForge. All rights reserved. | Compliant with South Africa's POPI Act</p>
         </div>
     </footer>
 
     <script>
-        // Initialize Finance Chart
-        const financeCtx = document.getElementById('financeChart').getContext('2d');
-        const financeChart = new Chart(financeCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-                datasets: [
-                    {
-                        label: 'Revenue (ZAR)',
-                        data: [85000, 92000, 105000, 98000, 112000, 124000, 118000, 132000, 128000, 145000],
-                        backgroundColor: 'rgba(46, 125, 50, 0.7)',
-                        borderColor: 'rgba(46, 125, 50, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Owner Payouts',
-                        data: [20000, 22000, 23000, 24000, 24000, 25000, 25000, 25000, 25000, 25000],
-                        backgroundColor: 'rgba(13, 71, 161, 0.7)',
-                        borderColor: 'rgba(13, 71, 161, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'AI Development Fund',
-                        data: [15000, 18000, 22000, 25000, 28000, 32000, 35000, 38000, 42000, 45000],
-                        backgroundColor: 'rgba(255, 111, 0, 0.7)',
-                        borderColor: 'rgba(255, 111, 0, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return 'R ' + value.toLocaleString();
-                            }
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            color: '#c9d1d9'
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.dataset.label + ': R ' + context.raw.toLocaleString();
-                            }
-                        }
-                    }
-                }
-            }
-        });
-        
-        // Initialize Performance Chart
-        const perfCtx = document.getElementById('performanceChart').getContext('2d');
-        const performanceChart = new Chart(perfCtx, {
-            type: 'line',
-            data: {
-                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
-                datasets: [
-                    {
-                        label: 'Content Quality',
-                        data: [92, 94, 95, 96, 97, 98],
-                        borderColor: '#1f6feb',
-                        backgroundColor: 'rgba(31, 111, 235, 0.1)',
-                        borderWidth: 3,
-                        tension: 0.3,
-                        fill: true
-                    },
-                    {
-                        label: 'Support Satisfaction',
-                        data: [94, 95, 96, 96, 97, 99],
-                        borderColor: '#2ea043',
-                        backgroundColor: 'rgba(46, 160, 67, 0.1)',
-                        borderWidth: 3,
-                        tension: 0.3,
-                        fill: true
-                    },
-                    {
-                        label: 'Security Score',
-                        data: [98, 98, 99, 99, 100, 100],
-                        borderColor: '#d29922',
-                        backgroundColor: 'rgba(210, 153, 34, 0.1)',
-                        borderWidth: 3,
-                        tension: 0.3,
-                        fill: true
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        min: 90,
-                        max: 100,
-                        ticks: {
-                            callback: function(value) {
-                                return value + '%';
-                            },
-                            color: '#8b949e'
-                        },
-                        grid: {
-                            color: 'rgba(240, 246, 252, 0.1)'
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            color: '#8b949e'
-                        },
-                        grid: {
-                            color: 'rgba(240, 246, 252, 0.1)'
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            color: '#c9d1d9'
-                        }
-                    }
-                }
-            }
-        });
-        
-        // Simulate AI agent activity
-        function updateAgentMetrics() {
-            document.querySelectorAll('.agent-card').forEach(card => {
-                const metrics = card.querySelectorAll('.metric-value');
-                if (metrics.length > 0) {
-                    // Randomly adjust metrics to simulate activity
-                    const currentValue = parseInt(metrics[0].textContent);
-                    if (!isNaN(currentValue)) {
-                        const newValue = Math.min(100, currentValue + (Math.random() > 0.5 ? 1 : 0));
-                        metrics[0].textContent = newValue + (metrics[0].textContent.includes('%') ? '%' : '');
-                    }
-                    
-                    if (metrics.length > 1) {
-                        const countValue = parseInt(metrics[1].textContent);
-                        if (!isNaN(countValue)) {
-                            metrics[1].textContent = countValue + Math.floor(Math.random() * 3);
-                        }
-                    }
-                }
-            });
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animated');
             
-            // Update financial numbers
-            const revenueElem = document.querySelector('.financial-value.income');
-            if (revenueElem) {
-                const currentRevenue = parseInt(revenueElem.textContent.replace(/[^0-9]/g, ''));
-                if (!isNaN(currentRevenue)) {
-                    revenueElem.textContent = 'R ' + (currentRevenue + Math.floor(Math.random() * 500)).toLocaleString();
-                }
-            }
-            
-            // Schedule next update
-            setTimeout(updateAgentMetrics, 5000);
-        }
-        
-        // Initialize the simulation
-        setTimeout(updateAgentMetrics, 3000);
-        
-        // Button animations
-        document.querySelectorAll('.github-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Save original text
-                const originalText = this.innerHTML;
-                
-                // Show processing animation
-                this.innerHTML = '<i class="fas fa-cog fa-spin"></i> Processing...';
-                this.disabled = true;
-                
-                // Simulate processing delay
-                setTimeout(() => {
-                    this.innerHTML = '<i class="fas fa-check"></i> Completed!';
-                    
-                    // Revert after delay
-                    setTimeout(() => {
-                        this.innerHTML = originalText;
-                        this.disabled = false;
-                    }, 2000);
-                }, 1500);
-            });
-        });
-        
-        // File explorer navigation
-        document.querySelectorAll('.file-item').forEach(item => {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.file-item').forEach(i => {
-                    i.classList.remove('active');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
                 });
-                this.classList.add('active');
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Simple agent animation
+            const agents = document.querySelectorAll('.sub-agent');
+            agents.forEach(agent => {
+                agent.addEventListener('mouseenter', () => {
+                    agent.style.transform = 'scale(1.1)';
+                    agent.style.boxShadow = '0 0 30px rgba(37, 99, 235, 0.5)';
+                });
+                
+                agent.addEventListener('mouseleave', () => {
+                    agent.style.transform = '';
+                    agent.style.boxShadow = '';
+                });
             });
         });
     </script>
